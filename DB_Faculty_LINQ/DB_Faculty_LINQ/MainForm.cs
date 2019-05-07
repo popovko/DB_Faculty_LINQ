@@ -22,7 +22,7 @@ namespace DB_Faculty_LINQ
             InitializeComponent();
 
             //combo box pushing
-            string[] tableNames = { "Студент", "Група", "Викладач", "Кафедра", "Предмет", "Куратор", "Пара", "Пара Викладач", "Пара Група" };
+            string[] tableNames = { "Студент", "Група", "Викладач", "Кафедра", "Предмет", "Куратор"};
             cbTables.Items.AddRange(tableNames);
 
         }
@@ -184,34 +184,7 @@ namespace DB_Faculty_LINQ
                     }
                     dgv.Columns[0].HeaderCell.Value = "Назва";
                     dgv.Columns[1].HeaderCell.Value = "Інформація";
-                    break;
-
-                case "Пара":
-                    var lsAndSb = (from ls in db.GetTable<Lesson>()
-                                   join sb in db.GetTable<Subject>()
-                                   on ls.ls_sbID equals sb.sb_ID
-                                   select new
-                                   {
-                                       lssb = sb.sb_name,
-                                       lsdow = ls.ls_DOW,
-                                       lsnum = ls.ls_num
-
-                                   });
-
-                    dgv.ColumnCount = 3;
-                    i = 0;
-                    dgv.RowCount = lsAndSb.Count() + 1;
-                    foreach (var ls in lsAndSb)
-                    {
-                        dgv.Rows[i].Cells[0].Value = ls.lssb;
-                        dgv.Rows[i].Cells[1].Value = ls.lsdow;
-                        dgv.Rows[i].Cells[2].Value = ls.lsnum;
-                        i++;
-                    }
-                    dgv.Columns[0].HeaderCell.Value = "Предмет";
-                    dgv.Columns[1].HeaderCell.Value = "День тижня";
-                    dgv.Columns[2].HeaderCell.Value = "Номер пари";
-                    break;
+                    break;         
             }
         }
 
