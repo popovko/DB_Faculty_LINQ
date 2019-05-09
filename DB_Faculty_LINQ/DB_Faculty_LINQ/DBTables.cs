@@ -26,11 +26,11 @@ namespace DB_Faculty_LINQ
         [Column(Name = "gr_name")]
         public string gr_name { get; set; }
         [Column(Name = "gr_dpID", CanBeNull = true)]
-        public int gr_dpID{ get; set; }
+        public int? gr_dpID{ get; set; }
         [Column(Name = "gr_year")]
         public int gr_year { get; set; }
         [Column(Name = "gr_leader", CanBeNull = true)]
-        public int gr_leader { get; set; }
+        public int? gr_leader { get; set; }
     }
 
     [Table(Name = "Teacher")]
@@ -41,7 +41,7 @@ namespace DB_Faculty_LINQ
         [Column(Name = "tc_name")]
         public string tc_name { get; set; }
         [Column(Name = "tc_dpID", CanBeNull = true)]
-        public int tc_dpID { get; set; }
+        public int? tc_dpID { get; set; }
     }
 
     [Table(Name = "Department")]
@@ -52,7 +52,7 @@ namespace DB_Faculty_LINQ
         [Column(Name = "dp_name")]
         public string dp_name { get; set; }
         [Column(Name = "dp_chief", CanBeNull = true)]
-        public int dp_chief { get; set; }
+        public int? dp_chief { get; set; }
     }
 
     [Table(Name = "Curator")]

@@ -14,7 +14,7 @@ namespace DB_Faculty_LINQ
 {
     public partial class MainForm : Form
     {
-        string connectionStr = "Data Source=DESKTOP-V0OV6R9;Initial Catalog=newFaculty;Integrated Security=True";
+        public static string connectionStr = "Data Source=DESKTOP-V0OV6R9;Initial Catalog=newFaculty;Integrated Security=True";
 
         public MainForm()
         {
@@ -114,7 +114,6 @@ namespace DB_Faculty_LINQ
                     dgv.Columns[1].HeaderCell.Value = "Курс";
                     dgv.Columns[2].HeaderCell.Value = "Староста";
                     dgv.Columns[3].HeaderCell.Value = "Кафедра";
-
                     break;
 
                 case "Викладач":
@@ -184,9 +183,53 @@ namespace DB_Faculty_LINQ
                     }
                     dgv.Columns[0].HeaderCell.Value = "Назва";
                     dgv.Columns[1].HeaderCell.Value = "Інформація";
-                    break;         
+                    break;
+                default:
+                    MessageBox.Show("Помилка");
+                    return;             
             }
         }
 
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            switch (cbTables.Text)
+            {
+
+                case "Студент":
+                    AddStudent addStudent = new AddStudent();
+                    addStudent.Show();
+                    break;
+
+                case "Кафедра":
+                    AddDepartment addDepartment = new AddDepartment();
+                    addDepartment.Show();
+                    break;
+
+                case "Група":
+                    AddGroup addGroup = new AddGroup();
+                    addGroup.Show();
+                    break;
+
+                case "Викладач":
+                    AddTeacher addTeacher = new AddTeacher();
+                    addTeacher.Show();
+                    break;
+
+                case "Предмет":
+                    AddSubject addSubject = new AddSubject();
+                    addSubject.Show();
+                    break;
+
+                default:
+                    MessageBox.Show("Помилка");
+                    return;
+            }
+        }
+
+        private void btnAddLesson_Click(object sender, EventArgs e)
+        {
+            AddLesson addLesson = new AddLesson();
+            addLesson.Show();
+        }
     }
 }

@@ -7,43 +7,32 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Linq.Expressions;
 using System.Data.Linq;
 
 namespace DB_Faculty_LINQ
 {
-    public partial class AddStudent : Form
+    public partial class AddDepartment : Form
     {
         static string connectionStr = MainForm.connectionStr;
         static DataContext db = new DataContext(connectionStr);
 
-        public AddStudent()
+        public AddDepartment()
         {
             InitializeComponent();
-            
-
-            var gr = from g in db.GetTable<Group>()
-                     select g.gr_name;
-            foreach(var group in gr)
-            {
-                cbStGroup.Items.Add(group);
-            }
         }
 
         private void btnOk_Click(object sender, EventArgs e)
         {
             try
             {
-                var idgr = from g in db.GetTable<Group>()
-                           where g.gr_name == cbStGroup.Text
-                           select g.gr_ID;
-
-                Helper.NameChecker(tbStName.Text);
-                Student student = new Student { st_grID = idgr.ToList()[0], st_name = tbStName.Text };
-                db.GetTable<Student>().InsertOnSubmit(student);
+                Helper.NameChecker(tbDpName.Text);
+                Department department = new Department {dp_name = tbDpName.Text };
+                db.GetTable<Department>().InsertOnSubmit(department);
                 db.SubmitChanges();
 
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
                 return;
