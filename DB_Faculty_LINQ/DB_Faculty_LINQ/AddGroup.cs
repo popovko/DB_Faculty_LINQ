@@ -40,6 +40,10 @@ namespace DB_Faculty_LINQ
             {
                 cbDp.Items.Add(depatrment);
             }
+
+            cbCurator.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbDp.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbGrYear.DropDownStyle = ComboBoxStyle.DropDownList;
         }
 
         public void AddCurator(string nameTc, string nameGr)

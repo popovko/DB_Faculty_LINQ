@@ -21,12 +21,15 @@ namespace DB_Faculty_LINQ
             InitializeComponent();
             
 
+
             var gr = from g in db.GetTable<Group>()
                      select g.gr_name;
             foreach(var group in gr)
             {
                 cbStGroup.Items.Add(group);
             }
+
+            cbStGroup.DropDownStyle = ComboBoxStyle.DropDownList;
         }
 
         private void btnOk_Click(object sender, EventArgs e)

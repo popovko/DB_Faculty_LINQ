@@ -28,7 +28,8 @@ namespace DB_Faculty_LINQ
             {
                 cbTchDepartment.Items.Add(dep);
             }
-            
+
+            cbTchDepartment.DropDownStyle = ComboBoxStyle.DropDownList;
         }
 
         private void btnOk_Click(object sender, EventArgs e)

@@ -15,6 +15,7 @@ namespace DB_Faculty_LINQ
     public partial class MainForm : Form
     {
         public static string connectionStr = "Data Source=DESKTOP-V0OV6R9;Initial Catalog=newFaculty;Integrated Security=True";
+        DataContext db = new DataContext(connectionStr);
 
         public MainForm()
         {
@@ -25,12 +26,13 @@ namespace DB_Faculty_LINQ
             string[] tableNames = { "Студент", "Група", "Викладач", "Кафедра", "Предмет", "Куратор"};
             cbTables.Items.AddRange(tableNames);
 
+            cbTables.DropDownStyle = ComboBoxStyle.DropDownList;
         }
 
 
         private void cbTables_SelectedIndexChanged(object sender, EventArgs e)
         {
-            DataContext db = new DataContext(connectionStr);
+
             dgv.ColumnCount = 0;
             dgv.RowCount = 1;
             int i = 0;
@@ -230,6 +232,45 @@ namespace DB_Faculty_LINQ
         {
             AddLesson addLesson = new AddLesson();
             addLesson.Show();
+        }
+
+        private void btnDel_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                switch (cbTables.Text)
+                {
+
+                    case "Студент":
+                        var st = from s in db.GetTable<Student>()
+                                 where (s.st_name == dgv.CurrentRow.Cells[0].Value.ToString() &&
+                                        s.st_grID == Helper.IDgrFromNameGr(dgv.CurrentRow.Cells[1].Value.ToString()))
+                                 select s;
+                        db.GetTable<Student>().DeleteOnSubmit(st.FirstOrDefault());
+                        db.SubmitChanges();
+                        break;
+                    case "Кафедра":
+                        //
+                        break;
+
+                    case "Група":
+                        //
+                        break;
+
+                    case "Викладач":
+                        //
+                        break;
+
+                    case "Предмет":
+                        //
+                        break;
+
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }
