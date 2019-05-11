@@ -14,6 +14,7 @@ namespace DB_Faculty_LINQ
 {
     public partial class MainForm : Form
     {
+
         public static string connectionStr = "Data Source=DESKTOP-V0OV6R9;Initial Catalog=newFaculty;Integrated Security=True";
         DataContext db = new DataContext(connectionStr);
 
@@ -270,7 +271,16 @@ namespace DB_Faculty_LINQ
             catch(Exception ex)
             {
                 MessageBox.Show(ex.Message);
+                return;
             }
+            MessageBox.Show("Готово");
+        }
+
+        private void btnGetTimetable_Click(object sender, EventArgs e)
+        {
+            TimeTable timeTable = new TimeTable();
+            timeTable.Show();
+                
         }
     }
 }

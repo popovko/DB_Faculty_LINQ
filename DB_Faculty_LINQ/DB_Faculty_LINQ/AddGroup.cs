@@ -110,6 +110,7 @@ namespace DB_Faculty_LINQ
                 MessageBox.Show(ex.Message);
                 return;
             }
+            MessageBox.Show("Готово");
 
         }
 

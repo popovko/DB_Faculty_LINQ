@@ -33,7 +33,8 @@ namespace DB_Faculty_LINQ
             {
                 MessageBox.Show(ex.Message);
             }
-            
+            MessageBox.Show("Готово");
+
         }
 
         private void btnCancel_Click(object sender, EventArgs e)

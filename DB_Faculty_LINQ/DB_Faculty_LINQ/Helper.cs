@@ -16,6 +16,20 @@ namespace DB_Faculty_LINQ
         static string connectionStr = MainForm.connectionStr;
         static DataContext db = new DataContext(connectionStr);
 
+        public static int numDOW(string dow)
+        {
+            if (dow.Contains("Понеділок"))
+                return 0;
+            if (dow.Contains("Вівторок"))
+                return 4;
+            if (dow.Contains("Середа"))
+                return 8;
+            if (dow.Contains("Четвер"))
+                return 12;
+            if (dow.Contains("П'ятниця"))
+                return 16;
+            return -1;
+        }
         public static void NameChecker(string name)
         {
             if (name.Length < 2)
@@ -75,6 +89,18 @@ namespace DB_Faculty_LINQ
                 return lsnum.ToList()[0];
         }
 
+        public static string NameSbFromIDSb(int id)
+        {
+            var sbname = from sb in db.GetTable<Subject>()
+                        where sb.sb_ID == id
+                        select sb.sb_name;
+
+            if (sbname.ToList().Count == 0)
+                throw new Exception("Предмет не знайдений");
+            else
+                return sbname.ToList()[0];
+        }
+
         public static string DOWLsFromIDLs(int id)
         {
             var lsdow = from ln in db.GetTable<Lesson>()
@@ -120,6 +146,17 @@ namespace DB_Faculty_LINQ
             else
                 return name.ToList()[0];
         }
+        public static int IdDpfromNameDp(string name)
+        {
+            var id = from d in db.GetTable<Department>()
+                       where d.dp_name == name
+                       select d.dp_ID;
+            if (id.ToList().Count == 0)
+                throw new Exception("Кафедра не знайдена");
+            else
+                return id.ToList()[0];
+        }
+
     }
     
 }

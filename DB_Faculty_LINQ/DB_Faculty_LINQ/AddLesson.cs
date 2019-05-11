@@ -36,7 +36,7 @@ namespace DB_Faculty_LINQ
                 cbSb.Items.Add(sub);
             }
 
-            string[] DOWs = new string[] { "Понедідок", "Вівторок","Середа","Четвер","П'ятниця" };
+            string[] DOWs = new string[] { "Понеділок", "Вівторок","Середа","Четвер","П'ятниця" };
             cbDOW.Items.AddRange(DOWs);
             cbLsNum.Items.AddRange(new object[] { 1, 2, 3, 4 });
 
@@ -183,6 +183,7 @@ namespace DB_Faculty_LINQ
                 return;
             }
             db.SubmitChanges();
+            MessageBox.Show("Готово");
         }
 
         private void btnCancel_Click(object sender, EventArgs e)

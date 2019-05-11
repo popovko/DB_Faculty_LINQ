@@ -36,12 +36,8 @@ namespace DB_Faculty_LINQ
         {
             try
             {
-                var dpid = from d in db.GetTable<Department>()
-                           where d.dp_name == cbTchDepartment.Text
-                           select d.dp_ID;
-
                 Helper.NameChecker(tbTchName.Text);
-                Teacher teacher = new Teacher { tc_ID = dpid.ToList()[0], tc_name = tbTchName.Text };
+                Teacher teacher = new Teacher { tc_name = tbTchName.Text, tc_dpID = Helper.IdDpfromNameDp(cbTchDepartment.Text) };
                 db.GetTable<Teacher>().InsertOnSubmit(teacher);
                 db.SubmitChanges();
             }
@@ -49,6 +45,7 @@ namespace DB_Faculty_LINQ
             {
                 MessageBox.Show(ex.Message);
             }
+            MessageBox.Show("Готово");
         }
 
         private void btnCancel_Click(object sender, EventArgs e)

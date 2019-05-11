@@ -48,6 +48,7 @@
             this.dgv.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgv.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
             this.dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv.Location = new System.Drawing.Point(12, 12);
             this.dgv.Name = "dgv";
@@ -106,6 +107,7 @@
             this.btnGetTimetable.TabIndex = 6;
             this.btnGetTimetable.Text = "Показати розклад";
             this.btnGetTimetable.UseVisualStyleBackColor = true;
+            this.btnGetTimetable.Click += new System.EventHandler(this.btnGetTimetable_Click);
             // 
             // btnDel
             // 
